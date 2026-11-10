@@ -1,0 +1,872 @@
+{
+"search_metadata":
+{
+"id":
+"6af30c3737ff8d51fd483b03",
+"status":
+"Success",
+"json_endpoint":
+"https://serpapi.com/searches/SZUta2CxYFfjzXify1RImU_sfwcwuYHqyK7XwnP9_YI/6af30c3737ff8d51fd483b03.json",
+"markdown_endpoint":
+"https://serpapi.com/searches/SZUta2CxYFfjzXify1RImU_sfwcwuYHqyK7XwnP9_YI/6af30c3737ff8d51fd483b03.md",
+"created_at":
+"2026-11-10 12:21:11 UTC",
+"processed_at":
+"2026-11-10 12:21:11 UTC",
+"google_flights_url":
+"https://www.google.com/travel/flights?hl=pt&gl=br&curr=BRL&tfs=CBwQAhoeEgoyMDI3LTAzLTEwagcIARIDR1JVcgcIARIDRVpFGh4SCjIwMjctMDMtMTdqBwgBEgNFWkVyBwgBEgNHUlVAAUgBcAGYAQE&tfu=EgIIAQ",
+"raw_html_file":
+"https://serpapi.com/searches/SZUta2CxYFfjzXify1RImU_sfwcwuYHqyK7XwnP9_YI/6af30c3737ff8d51fd483b03.html",
+"prettify_html_file":
+"https://serpapi.com/searches/SZUta2CxYFfjzXify1RImU_sfwcwuYHqyK7XwnP9_YI/6af30c3737ff8d51fd483b03.prettify",
+"total_time_taken":
+1.36
+},
+"search_parameters":
+{
+"engine":
+"google_flights",
+"hl":
+"pt",
+"gl":
+"br",
+"departure_id":
+"GRU",
+"arrival_id":
+"EZE",
+"outbound_date":
+"2027-03-10",
+"return_date":
+"2027-03-17",
+"currency":
+"BRL"
+},
+"best_flights":
+[
+{
+"flights":
+[
+{
+"departure_airport":
+{
+"name":
+"Aeroporto Internacional de São Paulo/Guarulhos–Governador André Franco Montoro",
+"id":
+"GRU",
+"time":
+"2027-03-10 13:00"
+},
+"arrival_airport":
+{
+"name":
+"Aeroporto Internacional Ministro Pistarini",
+"id":
+"EZE",
+"time":
+"2027-03-10 16:00"
+},
+"duration":
+180,
+"airplane":
+"Airbus A320",
+"airline":
+"LATAM",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/LA.png",
+"travel_class":
+"Economy",
+"flight_number":
+"LA 8022",
+"legroom":
+"71 cm",
+"extensions":
+[
+"Below average legroom (71 cm)",
+"Wi-Fi for a fee",
+"In-seat USB outlet",
+"Stream media to your device",
+"Carbon emissions estimate: 153 kg"
+],
+"plane_and_crew_by":
+"Latam Airlines Brasil"
+}
+],
+"total_duration":
+180,
+"carbon_emissions":
+{
+"this_flight":
+154000,
+"typical_for_this_route":
+150000,
+"difference_percent":
+3
+},
+"price":
+1930,
+"type":
+"Round trip",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/LA.png",
+"departure_token":
+"WyJDalJJT0VGZmQxWmtPRU0wY1UxQlJVWm1TRkZDUnkwdExTMHRMUzB0TFc5cloyb3hOVUZCUVVGQlIzSjZSRVJuUVdScFVXdEJFZ1pNUVRnd01qSWFDd2lhNHdzUUFob0RRbEpNT0J4d3o1QUMiLFtbIkdSVSIsIjIwMjctMDMtMTAiLCJFWkUiLG51bGwsIkxBIiwiODAyMiJdXV0="
+},
+{
+"flights":
+[
+{
+"departure_airport":
+{
+"name":
+"Aeroporto Internacional de São Paulo/Guarulhos–Governador André Franco Montoro",
+"id":
+"GRU",
+"time":
+"2027-03-10 17:00"
+},
+"arrival_airport":
+{
+"name":
+"Aeroporto Internacional Ministro Pistarini",
+"id":
+"EZE",
+"time":
+"2027-03-10 19:55"
+},
+"duration":
+175,
+"airplane":
+"Boeing 777",
+"airline":
+"Ethiopian",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/ET.png",
+"travel_class":
+"Economy",
+"flight_number":
+"ET 506",
+"legroom":
+"81 cm",
+"extensions":
+[
+"Above average legroom (81 cm)",
+"Wi-Fi for a fee",
+"In-seat USB outlet",
+"On-demand video",
+"Carbon emissions estimate: 180 kg"
+]
+}
+],
+"total_duration":
+175,
+"carbon_emissions":
+{
+"this_flight":
+180000,
+"typical_for_this_route":
+150000,
+"difference_percent":
+20
+},
+"price":
+2183,
+"type":
+"Round trip",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/ET.png",
+"departure_token":
+"WyJDalJJT0VGZmQxWmtPRU0wY1UxQlJVWm1TRkZDUnkwdExTMHRMUzB0TFc5cloyb3hOVUZCUVVGQlIzSjZSRVJuUVdScFVXdEJFZ1ZGVkRVd05ob0xDTENwRFJBQ0dnTkNVa3c0SEhDN3RBST0iLFtbIkdSVSIsIjIwMjctMDMtMTAiLCJFWkUiLG51bGwsIkVUIiwiNTA2Il1dXQ=="
+},
+{
+"flights":
+[
+{
+"departure_airport":
+{
+"name":
+"Aeroporto Internacional de São Paulo/Guarulhos–Governador André Franco Montoro",
+"id":
+"GRU",
+"time":
+"2027-03-10 08:50"
+},
+"arrival_airport":
+{
+"name":
+"Aeroporto Internacional Ministro Pistarini",
+"id":
+"EZE",
+"time":
+"2027-03-10 11:50"
+},
+"duration":
+180,
+"airplane":
+"Boeing 777",
+"airline":
+"SWISS",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+"travel_class":
+"Economy",
+"flight_number":
+"LX 92",
+"legroom":
+"79 cm",
+"extensions":
+[
+"Average legroom (79 cm)",
+"Wi-Fi for a fee",
+"In-seat USB outlet",
+"On-demand video",
+"Carbon emissions estimate: 140 kg"
+]
+}
+],
+"total_duration":
+180,
+"carbon_emissions":
+{
+"this_flight":
+141000,
+"typical_for_this_route":
+150000,
+"difference_percent":
+-6
+},
+"price":
+2371,
+"type":
+"Round trip",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/LX.png",
+"departure_token":
+"WyJDalJJT0VGZmQxWmtPRU0wY1UxQlJVWm1TRkZDUnkwdExTMHRMUzB0TFc5cloyb3hOVUZCUVVGQlIzSjZSRVJuUVdScFVXdEJFZ1JNV0RreUdnc0k3N3NPRUFJYUEwSlNURGdjY1B2T0FnPT0iLFtbIkdSVSIsIjIwMjctMDMtMTAiLCJFWkUiLG51bGwsIkxYIiwiOTIiXV1d"
+}
+],
+"other_flights":
+[
+{
+"flights":
+[
+{
+"departure_airport":
+{
+"name":
+"Aeroporto Internacional de São Paulo/Guarulhos–Governador André Franco Montoro",
+"id":
+"GRU",
+"time":
+"2027-03-10 22:15"
+},
+"arrival_airport":
+{
+"name":
+"Aeroporto Internacional Ministro Pistarini",
+"id":
+"EZE",
+"time":
+"2027-03-11 01:15"
+},
+"duration":
+180,
+"airplane":
+"Airbus A320",
+"airline":
+"LATAM",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/LA.png",
+"travel_class":
+"Economy",
+"flight_number":
+"LA 8130",
+"legroom":
+"71 cm",
+"extensions":
+[
+"Below average legroom (71 cm)",
+"Wi-Fi for a fee",
+"In-seat USB outlet",
+"Stream media to your device",
+"Carbon emissions estimate: 153 kg"
+],
+"often_delayed_by_over_30_min":
+true,
+"plane_and_crew_by":
+"Latam Airlines Brasil"
+}
+],
+"total_duration":
+180,
+"carbon_emissions":
+{
+"this_flight":
+154000,
+"typical_for_this_route":
+150000,
+"difference_percent":
+3
+},
+"price":
+1930,
+"type":
+"Round trip",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/LA.png",
+"departure_token":
+"WyJDalJJT0VGZmQxWmtPRU0wY1UxQlJVWm1TRkZDUnkwdExTMHRMUzB0TFc5cloyb3hOVUZCUVVGQlIzSjZSRVJuUVdScFVXdEJFZ1pNUVRneE16QWFDd2lhNHdzUUFob0RRbEpNT0J4d3o1QUMiLFtbIkdSVSIsIjIwMjctMDMtMTAiLCJFWkUiLG51bGwsIkxBIiwiODEzMCJdXV0="
+},
+{
+"flights":
+[
+{
+"departure_airport":
+{
+"name":
+"Aeroporto Internacional de São Paulo/Guarulhos–Governador André Franco Montoro",
+"id":
+"GRU",
+"time":
+"2027-03-10 22:45"
+},
+"arrival_airport":
+{
+"name":
+"Arturo Merino Benitez International Airport",
+"id":
+"SCL",
+"time":
+"2027-03-11 02:55"
+},
+"duration":
+250,
+"airplane":
+"Airbus A320",
+"airline":
+"LATAM",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/LA.png",
+"travel_class":
+"Economy",
+"flight_number":
+"LA 763",
+"legroom":
+"71 cm",
+"extensions":
+[
+"Below average legroom (71 cm)",
+"Wi-Fi for a fee",
+"In-seat USB outlet",
+"Stream media to your device",
+"Carbon emissions estimate: 217 kg"
+],
+"overnight":
+true,
+"often_delayed_by_over_30_min":
+true,
+"plane_and_crew_by":
+"Latam Airlines Group"
+},
+{
+"departure_airport":
+{
+"name":
+"Arturo Merino Benitez International Airport",
+"id":
+"SCL",
+"time":
+"2027-03-11 08:35"
+},
+"arrival_airport":
+{
+"name":
+"Aeroporto Internacional Ministro Pistarini",
+"id":
+"EZE",
+"time":
+"2027-03-11 10:40"
+},
+"duration":
+125,
+"airplane":
+"Boeing 787",
+"airline":
+"LATAM",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/LA.png",
+"travel_class":
+"Economy",
+"flight_number":
+"LA 542",
+"legroom":
+"79 cm",
+"extensions":
+[
+"Average legroom (79 cm)",
+"In-seat USB outlet",
+"On-demand video",
+"Carbon emissions estimate: 96 kg"
+],
+"plane_and_crew_by":
+"Latam Airlines Group"
+}
+],
+"layovers":
+[
+{
+"duration":
+340,
+"name":
+"Arturo Merino Benitez International Airport",
+"id":
+"SCL"
+}
+],
+"total_duration":
+715,
+"carbon_emissions":
+{
+"this_flight":
+314000,
+"typical_for_this_route":
+150000,
+"difference_percent":
+109
+},
+"price":
+2454,
+"type":
+"Round trip",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/LA.png",
+"departure_token":
+"WyJDalJJT0VGZmQxWmtPRU0wY1UxQlJVWm1TRkZDUnkwdExTMHRMUzB0TFc5cloyb3hOVUZCUVVGQlIzSjZSRVJuUVdScFVXdEJFZ3RNUVRjMk0zeE1RVFUwTWhvTENMLzhEaEFDR2dOQ1VrdzRISERUMmdJPSIsW1siR1JVIiwiMjAyNy0wMy0xMCIsIlNDTCIsbnVsbCwiTEEiLCI3NjMiXSxbIlNDTCIsIjIwMjctMDMtMTEiLCJFWkUiLG51bGwsIkxBIiwiNTQyIl1dXQ=="
+},
+{
+"flights":
+[
+{
+"departure_airport":
+{
+"name":
+"Aeroporto Internacional de São Paulo/Guarulhos–Governador André Franco Montoro",
+"id":
+"GRU",
+"time":
+"2027-03-10 19:20"
+},
+"arrival_airport":
+{
+"name":
+"Aeroporto Internacional Ministro Pistarini",
+"id":
+"EZE",
+"time":
+"2027-03-10 22:25"
+},
+"duration":
+185,
+"airplane":
+"Airbus A350",
+"airline":
+"Turkish Airlines",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/TK.png",
+"travel_class":
+"Economy",
+"flight_number":
+"TK 15",
+"legroom":
+"79 cm",
+"extensions":
+[
+"Average legroom (79 cm)",
+"Wi-Fi for a fee",
+"In-seat USB outlet",
+"On-demand video",
+"Carbon emissions estimate: 130 kg"
+],
+"often_delayed_by_over_30_min":
+true
+}
+],
+"total_duration":
+185,
+"carbon_emissions":
+{
+"this_flight":
+131000,
+"typical_for_this_route":
+150000,
+"difference_percent":
+-13
+},
+"price":
+6777,
+"type":
+"Round trip",
+"airline_logo":
+"https://www.gstatic.com/flights/airline_logos/70px/TK.png",
+"departure_token":
+"WyJDalJJT0VGZmQxWmtPRU0wY1UxQlJVWm1TRkZDUnkwdExTMHRMUzB0TFc5cloyb3hOVUZCUVVGQlIzSjZSRVJuUVdScFVXdEJFZ1JVU3pFMUdnc0lscTRwRUFJYUEwSlNURGdjY015OUJ3PT0iLFtbIkdSVSIsIjIwMjctMDMtMTAiLCJFWkUiLG51bGwsIlRLIiwiMTUiXV1d"
+}
+],
+"price_insights":
+{
+"lowest_price":
+1930,
+"price_level":
+"typical",
+"typical_price_range":
+[
+1200,
+2000
+],
+"price_history":
+[
+[
+1789009200,
+1541
+],
+[
+1789095600,
+1544
+],
+[
+1789182000,
+1543
+],
+[
+1789268400,
+1543
+],
+[
+1789354800,
+1543
+],
+[
+1789441200,
+1543
+],
+[
+1789527600,
+1559
+],
+[
+1789614000,
+1559
+],
+[
+1789700400,
+1560
+],
+[
+1789786800,
+1560
+],
+[
+1789873200,
+1562
+],
+[
+1789959600,
+1562
+],
+[
+1790046000,
+1548
+],
+[
+1790132400,
+1548
+],
+[
+1790218800,
+1550
+],
+[
+1790305200,
+1557
+],
+[
+1790391600,
+1568
+],
+[
+1790478000,
+1574
+],
+[
+1790564400,
+1574
+],
+[
+1790650800,
+1574
+],
+[
+1790737200,
+1578
+],
+[
+1790823600,
+1879
+],
+[
+1790910000,
+1879
+],
+[
+1790996400,
+1889
+],
+[
+1791082800,
+1894
+],
+[
+1791169200,
+1894
+],
+[
+1791255600,
+1811
+],
+[
+1791342000,
+1806
+],
+[
+1791428400,
+1806
+],
+[
+1791514800,
+1760
+],
+[
+1791601200,
+1757
+],
+[
+1791687600,
+1757
+],
+[
+1791774000,
+1757
+],
+[
+1791860400,
+1812
+],
+[
+1791946800,
+1812
+],
+[
+1792033200,
+1819
+],
+[
+1792119600,
+2003
+],
+[
+1792206000,
+2006
+],
+[
+1792292400,
+2018
+],
+[
+1792378800,
+1601
+],
+[
+1792465200,
+1679
+],
+[
+1792551600,
+1666
+],
+[
+1792638000,
+1584
+],
+[
+1792724400,
+1588
+],
+[
+1792810800,
+1587
+],
+[
+1792897200,
+1587
+],
+[
+1792983600,
+1587
+],
+[
+1793070000,
+1587
+],
+[
+1793156400,
+2093
+],
+[
+1793242800,
+2093
+],
+[
+1793329200,
+1936
+],
+[
+1793415600,
+1936
+],
+[
+1793502000,
+1952
+],
+[
+1793588400,
+1952
+],
+[
+1793674800,
+2126
+],
+[
+1793761200,
+2126
+],
+[
+1793847600,
+2147
+],
+[
+1793934000,
+2141
+],
+[
+1794020400,
+2141
+],
+[
+1794106800,
+2156
+],
+[
+1794193200,
+2156
+],
+[
+1794279600,
+1930
+]
+]
+},
+"airports":
+[
+{
+"departure":
+[
+{
+"airport":
+{
+"id":
+"GRU",
+"name":
+"Aeroporto Internacional de São Paulo/Guarulhos–Governador André Franco Montoro"
+},
+"city":
+"São Paulo",
+"country":
+"Brasil",
+"country_code":
+"BR",
+"image":
+"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTkx9athZsBRDrcQSs15lBM_on9PkrTwz-ySvt8J6pcJZSuqg14GFxUPDm1FgV3ckvtmLWX0pDDIkRldw",
+"thumbnail":
+"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ4D5SB4Yfugl7neBSWCiZ5gRiYxGRSSCYavaGuPsXj1q6Hk3Gv5C78US7ZqeotwTy5BX6xGe9CpXQkvQM45Mjnol7egb_CdoPyBoVeqB8"
+}
+],
+"arrival":
+[
+{
+"airport":
+{
+"id":
+"EZE",
+"name":
+"Aeroporto Internacional Ministro Pistarini"
+},
+"city":
+"Buenos Aires",
+"country":
+"Argentina",
+"country_code":
+"AR",
+"image":
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-_8Wir2bWSV6c5vDI6iSYjPHXjnWEuFr-Xg33JSybgBo36nv4VTOA4K1Sl04Tl_Y4XIp-2BjVw0X7QA",
+"thumbnail":
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjPsid8HQwZLpCB-QGyp_Sv0aoHPrBnZ7h7mygjconIcppC2tUm7xktKrXHl4E6I1cxwdLTaixDzmpo6dPL7DUHAyyhtojQ0gEZOSSnu4"
+}
+]
+},
+{
+"departure":
+[
+{
+"airport":
+{
+"id":
+"EZE",
+"name":
+"Aeroporto Internacional Ministro Pistarini"
+},
+"city":
+"Buenos Aires",
+"country":
+"Argentina",
+"country_code":
+"AR",
+"image":
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-_8Wir2bWSV6c5vDI6iSYjPHXjnWEuFr-Xg33JSybgBo36nv4VTOA4K1Sl04Tl_Y4XIp-2BjVw0X7QA",
+"thumbnail":
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjPsid8HQwZLpCB-QGyp_Sv0aoHPrBnZ7h7mygjconIcppC2tUm7xktKrXHl4E6I1cxwdLTaixDzmpo6dPL7DUHAyyhtojQ0gEZOSSnu4"
+}
+],
+"arrival":
+[
+{
+"airport":
+{
+"id":
+"GRU",
+"name":
+"Aeroporto Internacional de São Paulo/Guarulhos–Governador André Franco Montoro"
+},
+"city":
+"São Paulo",
+"country":
+"Brasil",
+"country_code":
+"BR",
+"image":
+"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTkx9athZsBRDrcQSs15lBM_on9PkrTwz-ySvt8J6pcJZSuqg14GFxUPDm1FgV3ckvtmLWX0pDDIkRldw",
+"thumbnail":
+"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ4D5SB4Yfugl7neBSWCiZ5gRiYxGRSSCYavaGuPsXj1q6Hk3Gv5C78US7ZqeotwTy5BX6xGe9CpXQkvQM45Mjnol7egb_CdoPyBoVeqB8"
+}
+]
+}
+]
+}

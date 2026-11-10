@@ -1,0 +1,11 @@
+{
+  "search_parameters": { "engine": "google_flights_autocomplete", "q": "Lisboa", "hl": "pt", "gl": "br" },
+  "suggestions": [
+    { "position": 1, "name": "Lisboa, Portugal", "type": "city", "description": "Capital de Portugal", "id": "/m/04llb",
+      "airports": [ { "name": "Aeroporto Humberto Delgado", "id": "LIS", "city": "Lisboa", "city_id": "/m/04llb", "distance": "5 km" } ] },
+    { "position": 2, "name": "Santo Antônio de Lisboa", "type": "city", "description": "Florianópolis", "id": "/m/0276b7l",
+      "airports": [ { "name": "Aeroporto Internacional de Florianópolis - Hercílio Luz", "id": "FLN", "city": "Florianópolis", "city_id": "/g/11bc6xlppd", "distance": "8 km" } ] },
+    { "position": 3, "name": "João Lisboa", "type": "city", "description": "Município no Maranhão", "id": "/g/1ywtx30tb",
+      "airports": [ { "name": "Aeroporto de Imperatriz", "id": "IMP", "city": "Imperatriz", "city_id": "/m/08slcb" } ] }
+  ]
+}

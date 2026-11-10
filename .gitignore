@@ -1,0 +1,20 @@
+# Segredos
+.env
+*.env.local
+
+# Python / Django
+venv/
+.venv/
+__pycache__/
+*.pyc
+db.sqlite3
+staticfiles/
+
+# Node / React
+node_modules/
+dist/
+
+# Editor e sistema
+.vscode/
+.idea/
+.DS_Store
