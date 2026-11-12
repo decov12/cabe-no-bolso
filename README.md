@@ -27,6 +27,7 @@ Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpAp
 
 **Sprint 1 (10/11 a 13/11): experiência principal**
 - [x] Proposta validada, fluxo de telas e quadro de tarefas
+- [x] Repositório criado, com a professora (BarbaraTieko) como colaboradora
 - [x] Projeto Django com DRF
 - [x] Cadastro e login na API
 - [ ] Projeto React com Bootstrap e telas de login
