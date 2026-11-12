@@ -40,7 +40,7 @@ Todos os valores são estimativas, e o site deixa isso claro.
 
 Veja o desenho completo em [`docs/fluxo-de-telas.md`](docs/fluxo-de-telas.md).
 
-![Fluxo de telas](docs/fluxo-de-telas.png)
+![Fluxo de telas](docs/fluxo-de-telas-desktop.png)
 
 ## Cronograma
 

@@ -2,7 +2,7 @@
 
 Versão desktop (1440 × 900) das 7 telas do site e do caminho entre elas.
 
-![Fluxo de telas do Cabe no bolso](fluxo-de-telas.png)
+![Fluxo de telas do Cabe no bolso](fluxo-de-telas-desktop.png)
 
 ## Caminho
 
