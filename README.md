@@ -48,11 +48,13 @@ Veja o desenho completo em [`docs/fluxo-de-telas.md`](docs/fluxo-de-telas.md).
 
 - [x] Proposta validada pela professora
 - [x] Teste das APIs no Playground da SerpApi
-- [ ] Repositório criado, com a professora (BarbaraTieko) como colaboradora
-- [ ] Fluxo de telas no repositório
+- [x] Repositório criado, com a professora (BarbaraTieko) como colaboradora
+- [x] Fluxo de telas no repositório
 - [ ] Quadro de tarefas no GitHub Projects
-- [ ] Projeto Django com DRF e projeto React com Bootstrap
-- [ ] Cadastro e login (API e telas)
+- [x] Projeto Django com DRF
+- [ ] Projeto React com Bootstrap
+- [x] Cadastro e login na API
+- [ ] Telas de cadastro e login
 - [ ] Busca de voos, hotéis e calendário (SerpApi)
 - [ ] Estimativa de gastos com o Gemini
 - [ ] Regra do veredito (cabe, cabe com ajustes, não cabe)
