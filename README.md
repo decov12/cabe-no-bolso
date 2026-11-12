@@ -30,7 +30,8 @@ Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpAp
 - [x] Repositório criado, com a professora (BarbaraTieko) como colaboradora
 - [x] Projeto Django com DRF
 - [x] Cadastro e login na API
-- [ ] Projeto React com Bootstrap e telas de login
+- [x] Projeto React com Bootstrap e rotas das 7 telas
+- [ ] Telas de login e cadastro
 - [ ] Busca de voos, hotéis e calendário (SerpApi)
 - [ ] Estimativa de gastos (Gemini) e regra do veredito
 - [ ] Formulário de simulação e tela de resultado
