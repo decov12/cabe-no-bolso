@@ -1,0 +1,64 @@
+/* Cores e fonte do Cabe no bolso. Vêm do fluxo de telas (docs/fluxo-de-telas.md). */
+:root {
+  --tinta: #13233f;
+  --sinal: #ffc632;
+  --pista: #1f5f8b;
+  --ceu: #e7ecef;
+  --cabe: #2e8b57;
+  --nao-cabe: #c2412d;
+
+  --bs-body-font-family: "Overpass", system-ui, sans-serif;
+  --bs-body-bg: var(--ceu);
+  --bs-body-color: var(--tinta);
+  --bs-link-color-rgb: 31, 95, 139;
+}
+
+h1, h2, h3 {
+  font-weight: 800;
+  letter-spacing: -0.015em;
+}
+
+/* Botões nas cores do projeto, por cima do Bootstrap */
+.btn-sinal {
+  --bs-btn-color: var(--tinta);
+  --bs-btn-bg: var(--sinal);
+  --bs-btn-border-color: var(--sinal);
+  --bs-btn-hover-color: var(--tinta);
+  --bs-btn-hover-bg: #f0b820;
+  --bs-btn-hover-border-color: #f0b820;
+  --bs-btn-active-bg: #e0aa18;
+  --bs-btn-active-border-color: #e0aa18;
+  font-weight: 700;
+}
+
+.btn-tinta {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--tinta);
+  --bs-btn-border-color: var(--tinta);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #1d3560;
+  --bs-btn-hover-border-color: #1d3560;
+  font-weight: 700;
+}
+
+/* Marca: a plaquinha amarela com "?" */
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.marca-placa {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 38px;
+  border-radius: 5px;
+  color: var(--sinal);
+  font-size: 24px;
+  background: linear-gradient(#22375c 0 49%, #0a1428 49% 51%, #13233f 51% 100%);
+}
