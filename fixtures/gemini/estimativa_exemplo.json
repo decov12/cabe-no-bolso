@@ -1,0 +1,25 @@
+{
+  "_aviso": "EXEMPLO escrito à mão, NÃO é resposta real do Gemini. Mostra o formato que backend/api/servicos/gemini.py pede (valores POR PESSOA POR DIA, em BRL). Usado só nos testes.",
+  "_pedido": {
+    "destino": "LIS (Lisboa, Portugal)",
+    "data_ida": "2027-03-10",
+    "data_volta": "2027-03-17",
+    "pessoas": 2,
+    "interesses": ["museus", "gastronomia"],
+    "versao_prompt": "v1"
+  },
+  "resposta": {
+    "comida": {
+      "valor_por_pessoa_dia": 160.0,
+      "justificativa": "Café da manhã simples, almoço em prato do dia e jantar em restaurante médio."
+    },
+    "passeios": {
+      "valor_por_pessoa_dia": 70.0,
+      "justificativa": "Um museu ou monumento pago por dia, alternando com passeios gratuitos."
+    },
+    "transporte": {
+      "valor_por_pessoa_dia": 25.0,
+      "justificativa": "Passe diário de metrô e ônibus, sem táxi."
+    }
+  }
+}

@@ -1,0 +1,2 @@
+origem,destino,ida,volta,pessoas,interesses,orcamento,gasto_real_passagem,gasto_real_hotel,gasto_real_comida,gasto_real_passeios,gasto_real_transporte,fonte
+GRU,LIS,2025-03-10,2025-03-17,2,museus;gastronomia,15000,4200,2700,2300,900,400,EXEMPLO - linha ilustrativa com valores inventados; é ignorada pelos comandos. Apague e preencha com viagens reais.

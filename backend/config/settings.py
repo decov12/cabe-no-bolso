@@ -157,3 +157,5 @@ CORS_ALLOWED_ORIGINS = env_list(
 # Chaves das APIs externas (usadas pelos serviços do Felipe)
 SERPAPI_KEY = os.getenv("SERPAPI_KEY", "")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+# Modelo do Gemini; vazio usa o padrão definido em api/servicos/gemini.py.
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "")

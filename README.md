@@ -69,4 +69,6 @@ npm install
 npm run dev
 ```
 
-O site abre em `http://localhost:5173` e a API em `http://localhost:8000`. Os testes usam as respostas salvas em `fixtures/serpapi/`, sem gastar a cota da SerpApi.
+No `.env`, `GEMINI_MODEL` é opcional (vazio usa `gemini-3.5-flash-lite`).
+
+O site abre em `http://localhost:5173` e a API em `http://localhost:8000`. Os testes (`python manage.py test`, dentro de `backend/`) usam as respostas salvas em `fixtures/`, sem gastar a cota da SerpApi nem do Gemini. Como usar os serviços de preço e IA: [docs/servicos-ia.md](docs/servicos-ia.md).
