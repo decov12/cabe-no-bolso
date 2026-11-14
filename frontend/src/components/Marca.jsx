@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 
-// Logo do projeto. Use `claro` quando estiver sobre fundo escuro.
-export default function Marca({ para = "/", claro = false }) {
+export default function Marca({ para = "/" }) {
   return (
-    <Link to={para} className="marca" style={claro ? { color: "#fff" } : undefined}>
+    <Link to={para} className="marca">
       <span className="marca-placa">?</span>
       Cabe no bolso
     </Link>

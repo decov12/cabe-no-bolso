@@ -19,7 +19,7 @@ export default function App() {
       <Route element={<LayoutLogado />}>
         <Route path="/nova" element={<NovaSimulacao />} />
         <Route path="/buscando" element={<Buscando />} />
-        <Route path="/resultado" element={<Resultado />} />
+        <Route path="/resultado/:id" element={<Resultado />} />
         <Route path="/alternativas" element={<Alternativas />} />
         <Route path="/historico" element={<Historico />} />
       </Route>
