@@ -1,0 +1,32 @@
+/* Plaquinhas do painel de partidas. Único estilo próprio das telas; o resto é Bootstrap. */
+.plaquinhas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em 0.9em;
+}
+
+.plaquinhas-palavra {
+  display: inline-flex;
+  gap: 0.15em;
+}
+
+.plaquinha {
+  display: inline-grid;
+  place-items: center;
+  width: 1.25em;
+  height: 1.45em;
+  border-radius: 0.12em;
+  font-weight: 800;
+  color: var(--sinal);
+  background: linear-gradient(#22375c 0 49%, #0a1428 49% 51%, #13233f 51% 100%);
+}
+
+.plaquinhas-sm { font-size: 1.1rem; }
+.plaquinhas-md { font-size: 1.8rem; }
+.plaquinhas-lg { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+
+/* Fundo escuro "tinta" dos painéis das telas 1, 2 e 5 */
+.painel-tinta {
+  background: var(--tinta);
+  color: #fff;
+}
