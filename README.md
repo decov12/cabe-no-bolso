@@ -32,8 +32,8 @@ Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpAp
 - [x] Cadastro e login na API
 - [x] Projeto React com Bootstrap e rotas das 7 telas
 - [ ] Telas de login e cadastro
-- [ ] Busca de voos, hotéis e calendário (SerpApi)
-- [ ] Estimativa de gastos (Gemini) e regra do veredito
+- [x] Busca de voos, hotéis e calendário (SerpApi)
+- [x] Estimativa de gastos (Gemini) e regra do veredito
 - [ ] Formulário de simulação e tela de resultado
 
 **Sprint 2 (16/11 a 19/11): histórico, alternativas e deploy**
