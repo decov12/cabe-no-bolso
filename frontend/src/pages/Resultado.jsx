@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../api";
 import Plaquinhas from "../components/Plaquinhas";
 import { VEREDITOS, formatarMes, formatarPeriodo, formatarReais, mensagemDeErro } from "../formatar";
+import { formularioDaSimulacao } from "../formulario";
 
 const CATEGORIAS = {
   passagem: { nome: "Passagem", cor: "bg-dark" },
@@ -59,20 +60,7 @@ export default function Resultado() {
   const escala = Math.max(total, orcamento);
 
   function mudarDados() {
-    const lugar = (codigo) => ({ codigo, rotulo: codigo, nome: codigo });
-    navigate("/nova", {
-      state: {
-        formulario: {
-          origem: lugar(s.origem),
-          destino: lugar(s.destino),
-          data_ida: s.data_ida,
-          data_volta: s.data_volta,
-          orcamento: String(orcamento),
-          pessoas: s.pessoas,
-          interesses: s.interesses,
-        },
-      },
-    });
+    navigate("/nova", { state: { formulario: formularioDaSimulacao(s) } });
   }
 
   return (
@@ -209,6 +197,9 @@ export default function Resultado() {
         )}
 
         <div className="d-grid gap-2 mb-3">
+          {s.veredito !== "cabe" && (
+            <Link to={`/alternativas/${s.id}`} className="btn btn-tinta btn-lg">Ver como fazer caber</Link>
+          )}
           <button type="button" className="btn btn-outline-dark btn-lg fw-bold" onClick={mudarDados}>Mudar dados</button>
           <Link to="/nova" className="btn btn-sinal btn-lg">Nova simulação</Link>
         </div>

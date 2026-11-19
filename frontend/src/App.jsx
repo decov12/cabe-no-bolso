@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/nova" element={<NovaSimulacao />} />
         <Route path="/buscando" element={<Buscando />} />
         <Route path="/resultado/:id" element={<Resultado />} />
-        <Route path="/alternativas" element={<Alternativas />} />
+        <Route path="/alternativas/:id" element={<Alternativas />} />
         <Route path="/historico" element={<Historico />} />
       </Route>
     </Routes>
