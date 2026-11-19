@@ -44,6 +44,19 @@ if not SECRET_KEY:
 
 ALLOWED_HOSTS = env_list("ALLOWED_HOSTS", "localhost,127.0.0.1" if DEBUG else "")
 
+# O Render informa o domínio do serviço (ex.: cabe-no-bolso-api.onrender.com) nesta variável.
+RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+if RENDER_EXTERNAL_HOSTNAME and RENDER_EXTERNAL_HOSTNAME not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Atrás do proxy do Render, o Django só sabe que a conexão é HTTPS por este cabeçalho.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+if not DEBUG:
+    # Em produção os cookies (admin e API navegável) só trafegam por HTTPS.
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
 
 # Aplicações
 INSTALLED_APPS = [
