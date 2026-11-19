@@ -18,6 +18,7 @@ class Simulacao(models.Model):
     # O que a pessoa pediu
     origem = models.CharField(max_length=3)
     destino = models.CharField(max_length=3)
+    cidade_destino = models.CharField(max_length=100, blank=True, default="")  # ex.: "Lisboa"
     data_ida = models.DateField()
     data_volta = models.DateField()
     orcamento = models.DecimalField(max_digits=12, decimal_places=2)

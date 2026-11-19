@@ -10,12 +10,14 @@ Projeto 3 de Tecnologias Web (Insper, 2026/2). Integrantes: André, Felipe e Hen
 | Deploy | a definir (Sprint 2) |
 | Quadro de tarefas | [GitHub Projects](https://github.com/users/decov12/projects/1) |
 | Fluxo de telas | [docs/fluxo-de-telas.md](docs/fluxo-de-telas.md) |
+| API do backend | [docs/api.md](docs/api.md) |
 
 ## Como funciona
 
 - Passagem, hotel e calendário de preços vêm do Google, pela SerpApi.
 - A IA (Gemini) estima só comida, passeios e transporte.
 - **O código soma tudo e decide o veredito**, não a IA. Todo valor é uma estimativa.
+- Buscas e estimativas ficam 24 horas em cache, e cada pessoa faz até 5 simulações por dia, para não estourar a cota das APIs.
 
 Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpApi, Gemini, Render.
 
@@ -38,7 +40,7 @@ Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpAp
 
 **Sprint 2 (16/11 a 19/11): histórico, alternativas e deploy**
 - [ ] Histórico de simulações e alternativas automáticas
-- [ ] Cache de 24 horas e limite diário por usuário
+- [x] Cache de 24 horas e limite diário por usuário
 - [ ] Acabamento visual e deploy público
 - [ ] Testes do veredito, teste de precisão com viagens reais e feedback de 10 pessoas
 

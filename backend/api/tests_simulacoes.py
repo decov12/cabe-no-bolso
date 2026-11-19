@@ -226,8 +226,8 @@ class ListarSimulacoesTests(ComTokenTestCase):
         self.assertEqual([item["id"] for item in dados], [nova.id, antiga.id])
         self.assertEqual(
             set(dados[0]),
-            {"id", "origem", "destino", "data_ida", "data_volta", "orcamento",
-             "veredito", "total_estimado", "criado_em"},
+            {"id", "origem", "destino", "cidade_destino", "data_ida", "data_volta",
+             "orcamento", "veredito", "total_estimado", "criado_em"},
         )
         self.assertEqual(dados[0]["orcamento"], "9000.00")
 

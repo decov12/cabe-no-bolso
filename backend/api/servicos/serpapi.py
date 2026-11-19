@@ -1,7 +1,7 @@
 """Cliente da SerpApi (tarefas #12 e #13): autocomplete, voos, hotéis e calendário.
 
-Todas as chamadas passam por buscar(engine, params). É nela que o cache de
-24 horas do Henrique (#24) pode ser colocado em volta.
+Todas as chamadas passam por buscar(engine, params), que tem o cache de
+24 horas (#24, veja cache.py).
 
 Cota gratuita: 250 buscas por mês e 50 por hora. Cada chamada bem-sucedida de
 buscar() gasta 1 busca. Os testes nunca chamam a SerpApi de verdade.
@@ -14,6 +14,7 @@ from collections import OrderedDict
 import requests
 from django.conf import settings
 
+from . import cache
 from .erros import ErroEntrada, ErroServicoExterno
 from .veredito import arredondar
 
@@ -82,6 +83,8 @@ CIDADES_POR_AEROPORTO = {
 def buscar(engine, params):
     """Faz 1 busca na SerpApi e devolve o JSON (dict).
 
+    - Cache de 24 horas (#24): a mesma busca (engine + params) feita de novo
+      nesse período devolve a resposta guardada e não gasta cota.
     - Usa timeout e faz 1 nova tentativa se a primeira falhar.
     - Levanta ErroServicoExterno se as duas tentativas falharem.
     - Respostas "sem resultados" voltam normalmente, para o parser tratar.
@@ -91,6 +94,18 @@ def buscar(engine, params):
     if not settings.SERPAPI_KEY:
         raise ErroServicoExterno("A chave da SerpApi não está configurada (SERPAPI_KEY).")
 
+    chave_cache = cache.montar_chave("serpapi", engine, params)
+    guardado = cache.obter(chave_cache)
+    if guardado is not None:
+        return guardado
+
+    dados = _buscar_na_api(engine, params)
+    cache.guardar(chave_cache, dados)
+    return dados
+
+
+def _buscar_na_api(engine, params):
+    """A busca de verdade (gasta 1 busca da cota), com 1 nova tentativa."""
     parametros = {**params, "engine": engine, "api_key": settings.SERPAPI_KEY}
     motivo = ""
     for tentativa in range(2):

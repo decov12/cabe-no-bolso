@@ -19,6 +19,7 @@ import time
 from django.conf import settings
 from google import genai
 
+from . import cache
 from .erros import ErroEntrada, ErroServicoExterno
 from .veredito import arredondar
 
@@ -182,6 +183,13 @@ def estimar_gastos_locais(destino, data_ida, data_volta, pessoas, interesses, ve
     texto = montar_prompt(destino, data_ida, data_volta, pessoas, interesses, versao_prompt)
     dias = max((data_volta - data_ida).days, 1)
 
+    # Cache de 24 horas (#24): a mesma viagem com o mesmo prompt e modelo devolve
+    # a mesma estimativa, sem nova chamada (e sem o número mudar ao repetir).
+    chave_cache = cache.montar_chave("gemini", modelo_configurado(), texto)
+    guardado = cache.obter(chave_cache)
+    if guardado is not None:
+        return guardado
+
     motivo = ""
     for tentativa in range(2):
         if tentativa:
@@ -197,7 +205,7 @@ def estimar_gastos_locais(destino, data_ida, data_volta, pessoas, interesses, ve
         except RespostaInvalida as erro:
             motivo = str(erro)
             continue
-        return {
+        estimativa = {
             "versao_prompt": versao_prompt,
             "modelo": modelo_configurado(),
             "dias": dias,
@@ -208,5 +216,7 @@ def estimar_gastos_locais(destino, data_ida, data_volta, pessoas, interesses, ve
                 for categoria, valor in valores.items()
             },
         }
+        cache.guardar(chave_cache, estimativa)
+        return estimativa
 
     raise ErroServicoExterno(f"A estimativa de gastos com IA falhou: {motivo}.")

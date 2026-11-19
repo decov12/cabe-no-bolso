@@ -44,6 +44,8 @@ Os valores ficam só no painel do Render (ou no `.env` local), nunca no Git.
 | `SERPAPI_KEY` | Preencher: chave da SerpApi |
 | `GEMINI_API_KEY` | Preencher: chave do Gemini |
 | `GEMINI_MODEL` | Opcional. Vazio usa o padrão do código |
+| `LIMITE_SIMULACOES_DIA` | Opcional. Simulações por pessoa por dia (padrão 5) |
+| `LIMITE_LUGARES_DIA` | Opcional. Buscas de lugar por pessoa por dia (padrão 60) |
 
 **Site (`cabe-no-bolso-site`)**
 
@@ -56,4 +58,6 @@ Os valores ficam só no painel do Render (ou no `.env` local), nunca no Git.
 
 - **A API "dorme".** Depois de 15 minutos sem receber nenhuma requisição, o Render desliga o backend. A primeira chamada seguinte o acorda e **demora cerca de 1 minuto**. Antes de uma demonstração, abra o site (ou o endereço da API) um ou dois minutos antes. As chamadas seguintes voltam a ser rápidas.
 - **O banco expira.** O PostgreSQL gratuito expira **30 dias depois de criado**. Depois disso há 14 dias para passar para um plano pago; passado esse prazo, o Render apaga o banco com todos os dados (usuários e simulações). Para a apresentação de 24/11 isso não é problema, mas o banco não serve para guardar dados por muito tempo. Também não há backup, e só é permitido um banco gratuito por conta.
+- **Cota da SerpApi:** 250 buscas por mês, divididas entre o site e os comandos de teste. Cada simulação gasta 3 ou 4. O cache de 24 horas e o limite de 5 simulações por pessoa por dia ajudam a não estourar. Contas de administrador (`is_staff`) não têm limite, o que é útil na apresentação.
+- **Simulação lenta:** o gunicorn roda com `--timeout 120`. Com o padrão de 30 s, uma simulação demorada seria cortada no meio.
 - Arquivos gravados no disco do servidor somem a cada deploy ou quando a API dorme. Por isso tudo o que precisa durar (usuários, simulações, cache) fica no banco.

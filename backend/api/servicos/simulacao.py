@@ -1,6 +1,6 @@
 """Orquestrador da simulação: junta SerpApi, Gemini, veredito e alternativas.
 
-Interface combinada com o Henrique (POST /api/simulacoes/, tarefa #16).
+Usado pela rota POST /api/simulacoes/ (tarefa #16, api/views.py).
 Veja docs/servicos-ia.md.
 """
 
@@ -203,6 +203,7 @@ def simular(origem, destino, data_ida, data_volta, orcamento, pessoas, interesse
     })
 
     return {
+        "cidade_destino": cidade,
         "veredito": veredito,
         "orcamento": orcamento,
         "total_estimado": total,
@@ -225,6 +226,11 @@ def simular(origem, destino, data_ida, data_volta, orcamento, pessoas, interesse
         },
         "precos_por_mes": precos_por_mes,
         "alternativas": alternativas,
+        # Para a tela explicar de onde vêm comida, passeios e transporte.
+        "estimativa_ia": {
+            "por_pessoa_dia": estimativa["por_pessoa_dia"],
+            "justificativas": estimativa["justificativas"],
+        },
         "buscas_serpapi": buscas,
         "versao_prompt": estimativa["versao_prompt"],
     }

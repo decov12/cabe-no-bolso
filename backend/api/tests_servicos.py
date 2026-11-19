@@ -655,9 +655,12 @@ class SimularTests(SimpleTestCase):
         self.assertEqual(resultado["buscas_serpapi"], 3)
         self.assertEqual(resultado["versao_prompt"], "v1")
         self.assertEqual(set(resultado), {
-            "veredito", "orcamento", "total_estimado", "diferenca", "noites", "gastos", "passagem",
-            "hotel", "precos_por_mes", "alternativas", "buscas_serpapi", "versao_prompt",
+            "cidade_destino", "veredito", "orcamento", "total_estimado", "diferenca", "noites", "gastos",
+            "passagem", "hotel", "precos_por_mes", "alternativas", "estimativa_ia", "buscas_serpapi",
+            "versao_prompt",
         })
+        self.assertEqual(resultado["cidade_destino"], "Lisboa")
+        self.assertEqual(set(resultado["estimativa_ia"]), {"por_pessoa_dia", "justificativas"})
         engines = [chamada.args[0] for chamada in buscar.call_args_list]
         self.assertEqual(engines, ["google_flights", "google_hotels", "google_flights_calendar"])
         calendario_params = buscar.call_args_list[2].args[1]

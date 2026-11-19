@@ -16,7 +16,9 @@ services:
     plan: free
     rootDir: backend
     buildCommand: ./build.sh
-    startCommand: gunicorn config.wsgi:application
+    # A simulação chama Gemini e SerpApi em sequência, cada um com timeout de 30 s
+    # e 1 nova tentativa: pode passar dos 30 s padrão do gunicorn.
+    startCommand: gunicorn config.wsgi:application --timeout 120
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.10

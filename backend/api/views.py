@@ -5,6 +5,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from . import limites
 from .models import Simulacao
 from .serializers import (
     CadastroSerializer,
@@ -73,6 +74,18 @@ class SimulacoesView(APIView):
         entrada.is_valid(raise_exception=True)
         dados = entrada.validated_data
 
+        # Limite diário (#25): conferido antes de simular, para não gastar cota.
+        pode, situacao = limites.pode_simular(request.user)
+        if not pode:
+            return Response(
+                {
+                    "erro": f"Você já fez {situacao['limite']} simulações hoje, que é o limite "
+                            "diário. Tente de novo amanhã ou abra uma simulação do histórico.",
+                    "limite_diario": situacao,
+                },
+                status=status.HTTP_429_TOO_MANY_REQUESTS,
+            )
+
         try:
             resultado = simular(**dados)
         except ErroEntrada as erro:
@@ -83,6 +96,7 @@ class SimulacoesView(APIView):
         simulacao = Simulacao.objects.create(
             usuario=request.user,
             **dados,
+            cidade_destino=resultado.get("cidade_destino") or "",
             veredito=resultado["veredito"],
             total_estimado=resultado["total_estimado"],
             diferenca=resultado["diferenca"],
@@ -94,20 +108,41 @@ class SimulacoesView(APIView):
 
 
 class SimulacaoDetalheView(APIView):
-    """GET /api/simulacoes/<id>/ — resultado completo. De outro usuário: 404."""
+    """GET    /api/simulacoes/<id>/ — resultado completo.
+    DELETE /api/simulacoes/<id>/ — apaga do histórico.
+    De outro usuário: 404."""
 
     def get(self, request, pk):
         simulacao = get_object_or_404(Simulacao, pk=pk, usuario=request.user)
         return Response(SimulacaoDetalheSerializer(simulacao).data)
 
+    def delete(self, request, pk):
+        get_object_or_404(Simulacao, pk=pk, usuario=request.user).delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class LimiteView(APIView):
+    """GET /api/simulacoes/limite/ — {"limite", "usadas_hoje", "restantes"} de hoje."""
+
+    def get(self, request):
+        return Response(limites.situacao_simulacoes(request.user))
+
 
 class LugaresView(APIView):
-    """GET /api/lugares/?q=texto — sugestões de cidades e aeroportos (SerpApi)."""
+    """GET /api/lugares/?q=texto — sugestões de cidades e aeroportos (SerpApi).
+
+    O mesmo texto em 24 horas vem do cache. Há um limite diário por usuário
+    (LIMITE_LUGARES_DIA), porque cada texto novo gasta 1 busca."""
 
     def get(self, request):
         texto = request.query_params.get("q", "").strip()
         if len(texto) < 2:
             return Response([])  # não gasta busca
+        if not limites.registrar_busca_de_lugar(request.user):
+            return Response(
+                {"erro": "Você fez muitas buscas de lugar hoje. Tente de novo amanhã."},
+                status=status.HTTP_429_TOO_MANY_REQUESTS,
+            )
         try:
             return Response(buscar_lugares(texto))
         except ErroServicoExterno as erro:

@@ -190,8 +190,8 @@ class SimulacaoResumoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Simulacao
-        fields = ["id", "origem", "destino", "data_ida", "data_volta", "orcamento",
-                  "veredito", "total_estimado", "criado_em"]
+        fields = ["id", "origem", "destino", "cidade_destino", "data_ida", "data_volta",
+                  "orcamento", "veredito", "total_estimado", "criado_em"]
 
 
 class SimulacaoDetalheSerializer(serializers.ModelSerializer):
@@ -200,8 +200,8 @@ class SimulacaoDetalheSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Simulacao
-        fields = ["id", "criado_em", "origem", "destino", "data_ida", "data_volta",
-                  "pessoas", "interesses"]
+        fields = ["id", "criado_em", "origem", "destino", "cidade_destino", "data_ida",
+                  "data_volta", "pessoas", "interesses"]
 
     def to_representation(self, instancia):
         return {**instancia.resultado, **super().to_representation(instancia)}

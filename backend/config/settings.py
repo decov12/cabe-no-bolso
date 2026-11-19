@@ -7,6 +7,7 @@ backend/.env, que nunca vai para o Git (veja backend/.env.example).
 """
 
 import os
+import sys
 from pathlib import Path
 
 import dj_database_url
@@ -24,6 +25,11 @@ def env_bool(nome, padrao=False):
     if valor is None:
         return padrao
     return valor.strip().lower() in ("1", "true", "yes", "sim", "on")
+
+
+def env_int(nome, padrao):
+    valor = os.getenv(nome, "").strip()
+    return int(valor) if valor else padrao
 
 
 def env_list(nome, padrao=""):
@@ -113,6 +119,27 @@ DATABASES = {
     )
 }
 
+# Estamos rodando "python manage.py test"?
+TESTANDO = len(sys.argv) > 1 and sys.argv[1] == "test"
+
+
+# Cache de 24 horas das respostas da SerpApi e do Gemini (api/servicos/cache.py).
+# Fica numa tabela do banco, criada pela migração api/0003: vale para todos os
+# processos do servidor e sobrevive a reinícios e deploys. Nos testes não guarda
+# nada, para um teste não reaproveitar a resposta de outro.
+CACHES = {
+    "default": (
+        {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}
+        if TESTANDO
+        else {
+            "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+            "LOCATION": "cache_respostas",
+            "TIMEOUT": 24 * 60 * 60,
+            "OPTIONS": {"MAX_ENTRIES": 5000},
+        }
+    )
+}
+
 
 # Validação de senha (o mínimo de 8 caracteres também é checado no cadastro)
 AUTH_PASSWORD_VALIDATORS = [
@@ -172,3 +199,8 @@ SERPAPI_KEY = os.getenv("SERPAPI_KEY", "")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 # Modelo do Gemini; vazio usa o padrão definido em api/servicos/gemini.py.
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "")
+
+
+# Limite diário por usuário (api/limites.py). Contas da equipe (is_staff) não têm limite.
+LIMITE_SIMULACOES_DIA = env_int("LIMITE_SIMULACOES_DIA", 5)
+LIMITE_LUGARES_DIA = env_int("LIMITE_LUGARES_DIA", 60)

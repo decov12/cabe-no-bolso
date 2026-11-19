@@ -8,5 +8,6 @@ urlpatterns = [
     path("auth/eu/", views.EuView.as_view(), name="eu"),
     path("lugares/", views.LugaresView.as_view(), name="lugares"),
     path("simulacoes/", views.SimulacoesView.as_view(), name="simulacoes"),
+    path("simulacoes/limite/", views.LimiteView.as_view(), name="simulacoes-limite"),
     path("simulacoes/<int:pk>/", views.SimulacaoDetalheView.as_view(), name="simulacao-detalhe"),
 ]

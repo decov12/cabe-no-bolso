@@ -1,6 +1,6 @@
 """Exceções dos serviços de busca e IA.
 
-A view do Henrique pode tratar as duas assim:
+A view (api/views.py) trata as duas assim:
 - ErroEntrada        -> 400 (a pessoa mandou algo errado ou não há voo/hotel para os dados)
 - ErroServicoExterno -> 502/503 (SerpApi ou Gemini falharam mesmo depois de 1 nova tentativa)
 

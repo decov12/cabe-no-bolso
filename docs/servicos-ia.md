@@ -44,6 +44,7 @@ Valores em dinheiro são `Decimal` com 2 casas. No DRF, use `DecimalField` ou co
 
 ```python
 {
+  "cidade_destino": "Lisboa",
   "veredito": "cabe_com_ajustes",          # "cabe" | "cabe_com_ajustes" | "nao_cabe"
   "orcamento": Decimal("9000.00"),
   "total_estimado": Decimal("10104.00"),
@@ -67,10 +68,13 @@ Valores em dinheiro são `Decimal` com 2 casas. No DRF, use `DecimalField` ou co
     {"tipo": "hotel_mais_simples", "descricao": "Ficar no Ibis Lisboa Jose Malhoa Hotel (2 estrelas, nota 4.2)...",
      "novo_total": Decimal("9824.00"), "novo_veredito": "cabe_com_ajustes", "economia": Decimal("280.00")},
   ],
+  "estimativa_ia": {"por_pessoa_dia": {"comida": Decimal("160.00"), ...}, "justificativas": {"comida": "...", ...}},
   "buscas_serpapi": 3,
   "versao_prompt": "v1",
 }
 ```
+
+A rota `POST /api/simulacoes/` salva esse resultado e o devolve em JSON, com o dinheiro como texto ("9000.00"). O contrato da API para o frontend está em [api.md](api.md).
 
 Estes são os números de verdade do teste de ponta a ponta, feito com as fixtures. Detalhes:
 
@@ -104,27 +108,17 @@ Estes são os números de verdade do teste de ponta a ponta, feito com as fixtur
 | **Total** | **3**, ou **4** com destino fora do mapeamento |
 | Gemini | 1 chamada (2 se a 1ª falhar) |
 
-O Gemini é chamado **antes** da SerpApi. Assim, se ele falhar, nenhuma busca é gasta. Se a simulação levantar exceção, `buscas_serpapi` não chega à view. Para o limite diário (#25), conte a simulação pelo pior caso (4).
+O Gemini é chamado **antes** da SerpApi. Assim, se ele falhar, nenhuma busca é gasta. Se a simulação levantar exceção, `buscas_serpapi` não chega à view. O limite diário (#25, `api/limites.py`) conta simulações salvas: 5 por pessoa por dia, ou seja, no máximo 20 buscas por pessoa por dia, e menos quando há cache.
 
 A cota gratuita é de 250 buscas por mês e 50 por hora, ou seja, umas **60 a 80 simulações por mês**.
 
 ### Cache de 24 horas (#24)
 
-Todas as buscas passam por uma única função, `serpapi.buscar(engine, params)`. Ela tem timeout de 30 s e faz 1 nova tentativa. Para o cache, embrulhe essa função:
+Implementado em `cache.py`. Todas as buscas passam por `serpapi.buscar(engine, params)`. Ela procura a resposta no cache (chave = SHA-256 de `engine` + `params`) e só chama a SerpApi de verdade (`_buscar_na_api`, com timeout de 30 s e 1 nova tentativa) se não achar. Respostas com falha não ficam guardadas. A estimativa do Gemini também fica no cache, com chave = modelo + texto do prompt, então a mesma viagem dá os mesmos números durante 24 horas.
 
-```python
-# exemplo de ideia, não está implementado
-from api.servicos import serpapi
-_buscar_original = serpapi.buscar
+O cache é o do Django (`settings.CACHES`), guardado na tabela `cache_respostas` do banco. Essa tabela é criada pela migração `api/0003`. Nos testes, `CACHES` usa `DummyCache`, que não guarda nada. Se o cache falhar, a busca é feita normalmente e só não fica guardada.
 
-def buscar_com_cache(engine, params):
-    chave = engine + json.dumps(params, sort_keys=True, default=str)
-    ...  # se existir no banco com menos de 24 h, devolve; senão chama _buscar_original e salva
-
-serpapi.buscar = buscar_com_cache   # as outras funções do módulo passam a usar o cache
-```
-
-`params` nunca inclui a chave da API: ela é colocada dentro de `buscar()`. Com o cache, `buscas_serpapi` passa a contar também as respostas vindas do cache. Para saber o gasto real, conte só as chamadas a `_buscar_original`.
+`buscas_serpapi` continua contando as buscas da simulação, venham elas do cache ou não.
 
 ## `buscar_lugares()` (para o `GET /api/lugares/?q=`)
 
