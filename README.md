@@ -7,10 +7,14 @@ Projeto 3 de Tecnologias Web (Insper, 2026/2). Integrantes: André, Felipe e Hen
 
 | | |
 | --- | --- |
-| Deploy | a definir (Sprint 2) |
+| Deploy | https://cabe-no-bolso-site.onrender.com |
 | Quadro de tarefas | [GitHub Projects](https://github.com/users/decov12/projects/1) |
 | Fluxo de telas | [docs/fluxo-de-telas.md](docs/fluxo-de-telas.md) |
 | API do backend | [docs/api.md](docs/api.md) |
+| Como publicar (Render) | [docs/deploy.md](docs/deploy.md) |
+| Uso de IA no desenvolvimento | [docs/uso-de-ia-no-desenvolvimento.md](docs/uso-de-ia-no-desenvolvimento.md) |
+
+> O servidor gratuito do Render "dorme" depois de 15 minutos sem uso. A primeira chamada pode levar cerca de 1 minuto para acordar.
 
 ## Como funciona
 
@@ -41,8 +45,11 @@ Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpAp
 **Sprint 2 (16/11 a 19/11): histórico, alternativas e deploy**
 - [x] Histórico de simulações e alternativas automáticas
 - [x] Cache de 24 horas e limite diário por usuário
-- [ ] Acabamento visual e deploy público
-- [ ] Testes do veredito, teste de precisão contra ferramenta de referência e feedback de 10 pessoas
+- [x] Deploy público
+- [ ] Acabamento visual
+- [x] Testes do veredito
+- [ ] Teste de precisão e comparação de prompts (resultados)
+- [ ] Feedback de 10 pessoas e melhorias feitas a partir dele
 
 **Apresentação (24/11, commits até as 09:30)**
 - [ ] Resultados no README e exemplo de uso de IA no desenvolvimento
@@ -72,13 +79,18 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-**Frontend** (entra na Sprint 1)
+**Frontend**
 ```bash
 cd frontend
 npm install
+copy .env.example .env         # opcional: sem ele, o site usa http://localhost:8000
 npm run dev
 ```
 
-No `.env`, `GEMINI_MODEL` é opcional (vazio usa `gemini-3.5-flash-lite`).
+No `.env` do backend, `GEMINI_MODEL` é opcional (vazio usa `gemini-3.5-flash-lite`).
 
 O site abre em `http://localhost:5173` e a API em `http://localhost:8000`. Os testes (`python manage.py test`, dentro de `backend/`) usam as respostas salvas em `fixtures/`, sem gastar a cota da SerpApi nem do Gemini. Como usar os serviços de preço e IA: [docs/servicos-ia.md](docs/servicos-ia.md).
+
+## Deploy
+
+O site, a API e o banco PostgreSQL ficam no Render, descritos no arquivo `render.yaml`. O passo a passo, as variáveis de ambiente e os cuidados (servidor que dorme, banco gratuito que expira) estão em [docs/deploy.md](docs/deploy.md).
