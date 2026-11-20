@@ -41,7 +41,7 @@ Tamanhos: XS (menos de 1h), S (1 a 3h), M (meio dia), L (um dia), XL (mais de um
 | 26 | Acabamento visual | Bootstrap, estados de carregando e erro, textos claros | André | M | 17/11 | 18/11 | To Do |
 | 27 | Deploy | Backend, banco PostgreSQL e site no ar, com o link no README | Henrique | L | 17/11 | 19/11 | Doing |
 | 28 | Testes automatizados do veredito | Testes usando os arquivos de `fixtures/` | Felipe | M | 17/11 | 18/11 | Done |
-| 29 | Teste de precisão | 15 a 20 viagens reais: comparar o total estimado com o gasto real | André, Felipe | L | 16/11 | 19/11 | Doing |
+| 29 | Teste de precisão | Comparar o total estimado com uma ferramenta de referência (Nomad), em 5 destinos | André, Felipe | L | 16/11 | 19/11 | Doing |
 | 30 | Comparação de versões do prompt | Rodar as mesmas viagens com duas versões e ver qual erra menos | Felipe | M | 18/11 | 19/11 | Doing |
 | 31 | Questionário de feedback | Formulário para pelo menos 10 pessoas testarem e responderem | André | M | 17/11 | 19/11 | To Do |
 | 32 | Responder o questionário da Sprint 2 | Cada integrante responde o questionário da equipe | André, Felipe, Henrique | XS | 19/11 | 20/11 | To Do |

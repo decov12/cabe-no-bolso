@@ -42,7 +42,7 @@ Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpAp
 - [x] Histórico de simulações e alternativas automáticas
 - [x] Cache de 24 horas e limite diário por usuário
 - [ ] Acabamento visual e deploy público
-- [ ] Testes do veredito, teste de precisão com viagens reais e feedback de 10 pessoas
+- [ ] Testes do veredito, teste de precisão contra ferramenta de referência e feedback de 10 pessoas
 
 **Apresentação (24/11, commits até as 09:30)**
 - [ ] Resultados no README e exemplo de uso de IA no desenvolvimento
@@ -51,9 +51,8 @@ Tarefas detalhadas, com responsável, tamanho e datas, no quadro do GitHub Proje
 
 ## Resultados
 
-- **Teste de precisão** (15 a 20 viagens reais, total estimado contra gasto real): [resultado](docs/teste-de-precisao/resultado.md)
-- **Comparação com guias de custo** (complemento, não é precisão; estimativas publicadas, não gasto real): [como foi feito](docs/teste-de-precisao/comparacao-com-guias.md)
-- **Comparação de versões do prompt** (v1 e v2, qual erra menos): mesmo arquivo de resultado.
+- **Teste de precisão** (nosso total comparado com uma ferramenta de referência, a Nomad, em 5 destinos): [como foi feito e resultado](docs/teste-de-precisao/comparacao-com-guias.md)
+- **Comparação de versões do prompt** (v1 e v2, qual erra menos, nas mesmas viagens de referência): [como rodar](docs/teste-de-precisao/comparacao-com-guias.md)
 - **Feedback de 10 pessoas** (roteiro e resumo das respostas): [docs/feedback-usuarios.md](docs/feedback-usuarios.md)
 
 Os números entram aqui até 23/11, antes da apresentação.
