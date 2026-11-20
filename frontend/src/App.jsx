@@ -7,6 +7,7 @@ import Buscando from "./pages/Buscando";
 import Resultado from "./pages/Resultado";
 import Alternativas from "./pages/Alternativas";
 import Historico from "./pages/Historico";
+import NaoEncontrada from "./pages/NaoEncontrada";
 
 export default function App() {
   return (
@@ -23,6 +24,9 @@ export default function App() {
         <Route path="/alternativas/:id" element={<Alternativas />} />
         <Route path="/historico" element={<Historico />} />
       </Route>
+
+      {/* Qualquer outro endereço */}
+      <Route path="*" element={<NaoEncontrada />} />
     </Routes>
   );
 }

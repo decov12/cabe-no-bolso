@@ -35,6 +35,14 @@ Os 85 testes dos serviços nunca chamam as APIs de verdade e têm uma "trava" qu
 
 Durante a sessão, o assistente rodou um comando a partir da pasta errada: o arquivo de dependências e duas pastas foram criados dentro do `venv/`. Ele percebeu pelo resultado, conferiu que tudo tinha sido criado naquele momento, apagou só o que criou e refez no lugar certo. Revisar o que a IA fez (`git status`, testes) continua sendo trabalho nosso.
 
+## Caso 5: duas IAs fizeram a mesma tela (coordenação)
+
+**O que aconteceu:** na noite de 13/11, o André pediu à IA dele as telas de início e de login. Ao mesmo tempo, a IA do Henrique, que cuidava do backend, também escreveu essas telas e mais três (nova simulação, buscando e resultado). Na hora de juntar (`git pull`), deu conflito nos arquivos de tela.
+
+**Como resolvemos:** em vez de escolher no escuro, comparamos as duas versões. A do Henrique estava mais completa (mensagens de erro por campo, abas por endereço, tratamento de token vencido), então ficamos com ela e descartamos a nossa. Depois conferimos que o projeto compilava e passava no lint.
+
+**Lição:** com IA, duas pessoas produzem código em minutos e sem perceber que estão fazendo o mesmo trabalho. O que evita isso é combinar quem faz o quê, antes de pedir. Desde então, cada IA recebe o texto da divisão de tarefas.
+
 ## Roteiro curto para a demonstração (#35)
 
 1. Mostrar `docs/servicos-ia.md` (o que entra e o que sai de `simular()`).

@@ -49,6 +49,14 @@ Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpAp
 
 Tarefas detalhadas, com responsável, tamanho e datas, no quadro do GitHub Projects.
 
+## Resultados
+
+- **Teste de precisão** (15 a 20 viagens reais, total estimado contra gasto real): [resultado](docs/teste-de-precisao/resultado.md)
+- **Comparação de versões do prompt** (v1 e v2, qual erra menos): mesmo arquivo de resultado.
+- **Feedback de 10 pessoas** (roteiro e resumo das respostas): [docs/feedback-usuarios.md](docs/feedback-usuarios.md)
+
+Os números entram aqui até 23/11, antes da apresentação.
+
 ## Como rodar
 
 Precisa de Python 3.12+, Node.js 22+ e chaves gratuitas da SerpApi e do Gemini.
