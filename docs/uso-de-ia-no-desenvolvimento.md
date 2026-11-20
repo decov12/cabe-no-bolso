@@ -1,7 +1,6 @@
-# Uso de IA no desenvolvimento (rascunho da tarefa #34)
+# Uso de IA no desenvolvimento
 
-> RASCUNHO para o grupo escolher **um** caso para a apresentação. Tudo aqui aconteceu de verdade
-> durante a implementação dos serviços de preço e IA (13/11/2026), feita com um assistente de código (Claude Code).
+O projeto foi implementado com a ajuda de um assistente de código (Claude Code). Todos os exemplos abaixo aconteceram de verdade durante a implementação: os casos 1 a 4 nos serviços de preço e IA (13/11/2026), o caso 5 na junção do frontend (13/11/2026) e os casos do Henrique na criação do backend (12/11/2026) e no deploy (a partir de 19/11/2026). Em todos, a IA escreveu código rápido, e o trabalho do grupo foi conferir o que ela fez.
 
 ## Caso 1: a documentação do Gemini tinha mudado (sugerido)
 
@@ -43,9 +42,35 @@ Durante a sessão, o assistente rodou um comando a partir da pasta errada: o arq
 
 **Lição:** com IA, duas pessoas produzem código em minutos e sem perceber que estão fazendo o mesmo trabalho. O que evita isso é combinar quem faz o quê, antes de pedir. Desde então, cada IA recebe o texto da divisão de tarefas.
 
+## Caso do Henrique: o banco "dummy" do DATABASE_URL vazio
+
+**O que pedimos:** ao Claude Code, o projeto Django com DRF e o cadastro e login por token.
+
+**O que a IA entregou:** o código e 11 testes, todos passando.
+
+**O que ela percebeu e corrigiu:** com `DATABASE_URL=` vazio, como no `.env.example`, a biblioteca `dj-database-url` montava um banco "dummy" em vez de cair para o SQLite. A chamada foi trocada por `dj_database_url.parse(os.getenv("DATABASE_URL") or <endereço do SQLite>)`.
+
+**Como verificamos:** a IA não conseguiu subir o servidor, então testamos à mão, pela API navegável do DRF, o cadastro, o login, o e-mail repetido e a senha fraca. Depois repetimos no site publicado.
+
+**Lição:** teste automático não prova que o fluxo funciona de ponta a ponta. Testar na prática continua sendo trabalho nosso.
+
+## Caso do Henrique: o deploy no Render
+
+- **Nome da chave:** o pedido para montar o `render.yaml` falava em `publishPath` para a pasta do site. O Claude Code conferiu na documentação do Render e usou o nome correto, `staticPublishPath`.
+- **Variáveis:** as variáveis marcadas como `sync: false` (`VITE_API_URL`, `CORS_ALLOWED_ORIGINS`, `SERPAPI_KEY`, `GEMINI_API_KEY`) não foram criadas sozinhas no painel. Antes de criá-las à mão, o navegador mostrava erro de CORS e `ERR_CONNECTION_REFUSED`. Só depois disso o site passou a falar com a API.
+- **Lição:** o arquivo de configuração pode estar certo e o serviço publicado ainda não funcionar. É preciso abrir o site e testar.
+
 ## Roteiro curto para a demonstração (#35)
 
 1. Mostrar `docs/servicos-ia.md` (o que entra e o que sai de `simular()`).
-2. Rodar `python manage.py test` (96 testes, sem gastar cota).
+2. Rodar `python manage.py test` (124 testes, sem gastar cota).
 3. Mostrar o resultado real GRU→LIS: não cabe, faltam R$ 5.032, com as alternativas.
-4. Contar o caso escolhido acima em 1 minuto.
+4. Contar o caso escolhido na seção abaixo em 1 minuto.
+
+## Qual caso vamos contar na apresentação
+
+**Recomendação:** o caso do Henrique sobre o banco "dummy" do `DATABASE_URL` vazio. É o que melhor mostra o que a IA errou e como verificamos: o código veio com 11 testes passando e mesmo assim tinha um defeito, e o fluxo só ficou confirmado quando testamos à mão, de ponta a ponta.
+
+**Reserva:** o caso 1, que já estava sugerido no rascunho. Mostra como conferimos a fonte oficial em vez de confiar na memória da IA.
+
+**Escolha final do grupo:** a definir.
