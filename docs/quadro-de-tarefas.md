@@ -33,9 +33,9 @@ Tamanhos: XS (menos de 1h), S (1 a 3h), M (meio dia), L (um dia), XL (mais de um
 | # | Tarefa | Descrição | Responsável | Tam. | Início | Fim | Coluna |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 20 | Histórico na API | Listar, abrir e apagar simulações do usuário logado | Henrique, Felipe | M | 16/11 | 19/11 | Done |
-| 21 | Telas de histórico | Tela 7 e reabrir o resultado | André | M | 16/11 | 17/11 | To Do |
+| 21 | Telas de histórico | Tela 7 e reabrir o resultado | Henrique | M | 16/11 | 17/11 | Done |
 | 22 | Alternativas automáticas | Calcular outro mês, menos noites e hotel mais barato | Felipe | L | 16/11 | 18/11 | Done |
-| 23 | Tela de alternativas | Tela 6 ligada à API | André | M | 17/11 | 18/11 | To Do |
+| 23 | Tela de alternativas | Tela 6 ligada à API | Henrique | M | 17/11 | 18/11 | Done |
 | 24 | Cache de 24 horas | Reaproveitar busca da mesma rota e das mesmas datas | Felipe | M | 16/11 | 19/11 | Done |
 | 25 | Limite diário por usuário | Bloquear excesso de simulações para não estourar a cota das APIs | Felipe | S | 17/11 | 19/11 | Done |
 | 26 | Acabamento visual | Bootstrap, estados de carregando e erro, textos claros | André | M | 17/11 | 18/11 | To Do |

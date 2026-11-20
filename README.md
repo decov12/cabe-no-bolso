@@ -39,7 +39,7 @@ Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpAp
 - [x] Formulário de simulação e tela de resultado
 
 **Sprint 2 (16/11 a 19/11): histórico, alternativas e deploy**
-- [ ] Histórico de simulações e alternativas automáticas
+- [x] Histórico de simulações e alternativas automáticas
 - [x] Cache de 24 horas e limite diário por usuário
 - [ ] Acabamento visual e deploy público
 - [ ] Testes do veredito, teste de precisão com viagens reais e feedback de 10 pessoas
