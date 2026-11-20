@@ -52,6 +52,7 @@ Tarefas detalhadas, com responsável, tamanho e datas, no quadro do GitHub Proje
 ## Resultados
 
 - **Teste de precisão** (15 a 20 viagens reais, total estimado contra gasto real): [resultado](docs/teste-de-precisao/resultado.md)
+- **Comparação com guias de custo** (complemento, não é precisão; estimativas publicadas, não gasto real): [como foi feito](docs/teste-de-precisao/comparacao-com-guias.md)
 - **Comparação de versões do prompt** (v1 e v2, qual erra menos): mesmo arquivo de resultado.
 - **Feedback de 10 pessoas** (roteiro e resumo das respostas): [docs/feedback-usuarios.md](docs/feedback-usuarios.md)
 
