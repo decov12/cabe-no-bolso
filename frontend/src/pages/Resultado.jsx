@@ -58,6 +58,8 @@ export default function Resultado() {
   const orcamento = Number(s.orcamento);
   const diferenca = Number(s.diferenca);
   const escala = Math.max(total, orcamento);
+  // [["comida", "Café da manhã simples..."], ...]; vazio nas simulações feitas antes do campo existir.
+  const justificativas = Object.entries(s.estimativa_ia?.justificativas ?? {});
 
   function mudarDados() {
     navigate("/nova", { state: { formulario: formularioDaSimulacao(s) } });
@@ -66,7 +68,10 @@ export default function Resultado() {
   return (
     <div className="row g-4">
       <div className="col-lg-8">
-        <h1 className="mb-1">{s.origem} → {s.destino}, {formatarPeriodo(s.data_ida, s.data_volta)}</h1>
+        <h1 className="mb-1">
+          {/* Nas simulações antigas cidade_destino vem vazio: aí fica só o código. */}
+          {s.origem} → {s.cidade_destino ? `${s.cidade_destino} (${s.destino})` : s.destino}, {formatarPeriodo(s.data_ida, s.data_volta)}
+        </h1>
         <p className="text-secondary mb-4">
           {plural(s.pessoas, "pessoa", "pessoas")}, {plural(s.noites, "noite", "noites")}
         </p>
@@ -129,6 +134,23 @@ export default function Resultado() {
                 );
               })}
             </div>
+
+            {justificativas.length > 0 && (
+              // <details> abre e fecha sozinho, sem JavaScript; começa fechado para não pesar a tela.
+              <details className="mt-4 small">
+                <summary className="fw-semibold text-secondary">Como a IA estimou comida, passeios e transporte</summary>
+                <ul className="list-unstyled mt-2 mb-0">
+                  {justificativas.map(([categoria, texto]) => (
+                    <li key={categoria} className="mb-2">
+                      <strong>{CATEGORIAS[categoria]?.nome ?? categoria}</strong>
+                      {s.estimativa_ia.por_pessoa_dia?.[categoria] &&
+                        ` (${formatarReais(s.estimativa_ia.por_pessoa_dia[categoria])} por pessoa por dia)`}
+                      : <span className="text-secondary">{texto}</span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
           </div>
         </div>
 

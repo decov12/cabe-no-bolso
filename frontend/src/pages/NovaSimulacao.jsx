@@ -52,11 +52,16 @@ export default function NovaSimulacao() {
   const [form, setForm] = useState(location.state?.formulario ?? VAZIO);
   const [erros, setErros] = useState({});
   const [ultimas, setUltimas] = useState([]);
+  // {"limite", "usadas_hoje", "restantes"}; restantes null = conta da equipe, sem limite.
+  const [limite, setLimite] = useState(null);
 
   useEffect(() => {
     api.get("/api/simulacoes/")
       .then((resposta) => setUltimas(resposta.data.slice(0, 3)))
       .catch(() => {}); // a lista lateral é só um atalho; sem ela o formulário funciona
+    api.get("/api/simulacoes/limite/")
+      .then((resposta) => setLimite(resposta.data))
+      .catch(() => {}); // sem o aviso, o backend ainda barra o excesso com 429
   }, []);
 
   function mudar(nome, valor) {
@@ -85,6 +90,8 @@ export default function NovaSimulacao() {
   }
 
   const limiteAtingido = form.interesses.length >= MAXIMO_INTERESSES;
+  const restantes = limite?.restantes ?? null;
+  const semSimulacoesHoje = restantes === 0;
 
   return (
     <div className="row g-4">
@@ -156,9 +163,20 @@ export default function NovaSimulacao() {
               </div>
             </div>
           </div>
-          <div className="card-footer bg-white d-flex justify-content-between align-items-center p-4">
-            <span className="small text-secondary">Leva de 5 a 15 segundos.</span>
-            <button type="submit" className="btn btn-sinal btn-lg px-4">Simular viagem</button>
+          <div className="card-footer bg-white d-flex justify-content-between align-items-center gap-3 p-4">
+            <div className="small text-secondary">
+              Leva de 5 a 15 segundos.
+              {restantes !== null && (
+                <div className={semSimulacoesHoje ? "text-danger fw-semibold" : ""}>
+                  {semSimulacoesHoje
+                    ? `Você já fez as ${limite.limite} simulações de hoje, que é o limite diário. Amanhã dá para simular de novo; enquanto isso, as simulações do histórico continuam abertas.`
+                    : `Você ainda pode fazer ${restantes} ${restantes === 1 ? "simulação" : "simulações"} hoje.`}
+                </div>
+              )}
+            </div>
+            <button type="submit" className="btn btn-sinal btn-lg px-4 flex-shrink-0" disabled={semSimulacoesHoje}>
+              Simular viagem
+            </button>
           </div>
         </form>
       </div>
