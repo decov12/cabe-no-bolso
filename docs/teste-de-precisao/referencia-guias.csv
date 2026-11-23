@@ -2,7 +2,7 @@ origem,destino,ida,volta,pessoas,interesses,orcamento,gasto_real_passagem,gasto_
 GRU,LIS,2026-05-06,2026-05-13,1,,8455,3770,2800,1421,464,,Guia Nomad perfil econômico (nomadglobal.com/viagens/quanto-custa/lisboa); estimativa média de 7 dias para 1 pessoa; pesquisa 10/2025
 GRU,EZE,2026-05-06,2026-05-13,1,,4640,1500,1850,840,450,,Guia Nomad perfil econômico (nomadglobal.com/viagens/quanto-custa/buenos-aires); estimativa média de 7 dias para 1 pessoa; pesquisa 10/2025
 GRU,SCL,2026-05-06,2026-05-13,1,,5496,1362,2784,900,450,,Guia Nomad perfil econômico (nomadglobal.com/viagens/quanto-custa/santiago); estimativa média de 7 dias para 1 pessoa; pesquisa 10/2025
-GRU,CDG,2026-05-06,2026-05-13,1,,10259,4359,4025,1531,344,,Guia Nomad perfil econômico (nomadglobal.com/viagens/quanto-custa/paris); voo calculado como total menos as outras linhas; pesquisa 10/2025
+GRU,CDG,2026-05-06,2026-05-13,1,,10259,4359,4025,1531,344,,Guia Nomad perfil econômico (nomadglobal.com/viagens/quanto-custa/paris); estimativa média de 7 dias para 1 pessoa; pesquisa 10/2025
 GRU,MCO,2026-05-06,2026-05-13,1,,10770,2500,4000,1495,2775,,Guia Nomad perfil econômico (nomadglobal.com/viagens/quanto-custa/orlando); estimativa média de 7 dias para 1 pessoa; pesquisa 10/2025
 GRU,LIS,2026-05-06,2026-05-13,1,,16121,,6496,2639,986,,Guia Nomad perfil confortável (nomadglobal.com/viagens/quanto-custa/lisboa); sem passagem porque o guia usa econômica premium; pesquisa 10/2025
 GRU,EZE,2026-05-06,2026-05-13,1,,9000,,3500,2100,1200,,Guia Nomad perfil confortável (nomadglobal.com/viagens/quanto-custa/buenos-aires); sem passagem porque o guia usa econômica premium; pesquisa 10/2025

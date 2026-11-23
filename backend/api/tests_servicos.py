@@ -812,6 +812,10 @@ class TestePrecisaoComandoTests(ComandosPrecisaoBase):
         # passagem: viagem 1 erra 10% (4400 vs 4000); viagem 2 erra 128% (4400 vs 1930)
         self.assertIn("| passagem | 69,0% | 2 |", texto)
         self.assertIn("| passeios | 20,0% | 1 |", texto)  # viagem 2 sem valor real
+        # total: viagem 1 erra 3,9% (10600 vs 10200); viagem 2 compara só as 4
+        # categorias com valor real e erra 57,3% (9800 vs 6230)
+        self.assertIn("| **Total** | 30,6% | 2 |", texto)
+        self.assertIn("1 viagem(ns) não têm valor real em todas as categorias", texto)
         self.assertIn("Erro médio geral", texto)
         self.assertIn("1 viagem(ns) já aconteceram", texto)
         self.assertIn("até 6 buscas", saida.getvalue())

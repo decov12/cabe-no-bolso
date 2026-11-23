@@ -48,21 +48,50 @@ Tecnologias: React (Vite) + Bootstrap, Django REST Framework, PostgreSQL, SerpAp
 - [x] Deploy público
 - [ ] Acabamento visual
 - [x] Testes do veredito
-- [ ] Teste de precisão e comparação de prompts (resultados)
-- [ ] Feedback de 10 pessoas e melhorias feitas a partir dele
+- [x] Validação com a ferramenta de custo de viagem da Nomad (teste de precisão)
+- [x] Comparação de versões do prompt
 
 **Apresentação (24/11, commits até as 09:30)**
-- [ ] Resultados no README e exemplo de uso de IA no desenvolvimento
+- [x] Resultados no README e exemplo de uso de IA no desenvolvimento
 
 Tarefas detalhadas, com responsável, tamanho e datas, no quadro do GitHub Projects.
 
 ## Resultados
 
-- **Teste de precisão** (nosso total comparado com uma ferramenta de referência, a Nomad, em 5 destinos): [como foi feito e resultado](docs/teste-de-precisao/comparacao-com-guias.md)
-- **Comparação de versões do prompt** (v1 e v2, qual erra menos, nas mesmas viagens de referência): [como rodar](docs/teste-de-precisao/comparacao-com-guias.md)
-- **Feedback de 10 pessoas** (roteiro e resumo das respostas): [docs/feedback-usuarios.md](docs/feedback-usuarios.md)
+### Validação com a ferramenta da Nomad (teste de precisão)
 
-Os números entram aqui até 23/11, antes da apresentação.
+Validamos o site com a ferramenta de custo de viagem da Nomad, o simulador [Quanto custa viajar](https://www.nomadglobal.com/viagens/quanto-custa-viajar), que estima voo, hospedagem, alimentação e passeios por destino e estilo de viagem. Comparamos o nosso total com o dela em 5 destinos (Lisboa, Buenos Aires, Santiago, Paris e Orlando), viagem de 7 dias para 1 pessoa saindo de São Paulo, nos perfis econômico e confortável da referência. Rodado em 23/11/2026, com o prompt v1.
+
+| Perfil da referência | Erro médio do total | Melhor e pior destino |
+| --- | --- | --- |
+| Econômico (com passagem) | **9,0%** | Lisboa 1,3% · Paris 24,9% |
+| Confortável (sem passagem) | **53,6%** | Paris 25,3% · Buenos Aires 70,8% |
+
+| Categoria | Erro médio (10 viagens) |
+| --- | --- |
+| Passagem (só perfil econômico) | 43,8% |
+| Hotel | 45,5% |
+| Comida | 27,2% |
+| Passeios | 44,4% |
+
+- **O total do perfil econômico fica perto da referência (9%)**, que é o perfil que o site simula: voo mais barato e hotel acessível.
+- No perfil confortável o site fica bem abaixo, como esperado, porque ele não tem a opção de viagem confortável.
+- Por categoria o erro é maior que no total, porque os erros se compensam: a passagem saiu mais cara que a referência nos 5 destinos e o hotel saiu mais barato em 4 deles.
+- A referência não separa transporte local, então essa categoria não entra. Os preços da Nomad são de outubro de 2025, e os nossos são de maio de 2027 (a SerpApi só busca datas futuras).
+
+Detalhes, método e tabela viagem a viagem: [comparacao-com-guias.md](docs/teste-de-precisao/comparacao-com-guias.md) e [resultado.md](docs/teste-de-precisao/resultado.md).
+
+### Comparação de versões do prompt
+
+Rodamos as duas versões do prompt do Gemini nas mesmas 10 viagens de referência. Só comida e passeios têm valor na referência.
+
+| Categoria | Erro v1 | Erro v2 |
+| --- | --- | --- |
+| Comida | **27,2%** | 29,6% |
+| Passeios | 44,4% | **40,7%** |
+| Média | 35,8% | **35,2%** |
+
+A v2 erra um pouco menos na média, mas a diferença (0,6 ponto) é pequena demais para separar do acaso, já que o Gemini varia de uma chamada para outra. A v1 é melhor em comida e a v2 é melhor em passeios. Mantivemos a **v1** como padrão: ela é mais simples e, no perfil econômico, o que o site simula, errou bem menos em comida (4,3% contra 21,0%). Tabela completa: [comparacao-prompts.md](docs/teste-de-precisao/comparacao-prompts.md).
 
 ## Como rodar
 

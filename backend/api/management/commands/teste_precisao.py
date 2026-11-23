@@ -96,18 +96,30 @@ class Command(BaseCommand):
 
 
 def erros_da_simulacao(simulacao, real):
-    """{categoria: erro %} e o erro do total."""
+    """{categoria: erro %}, o erro do total e os dois totais comparados.
+
+    O total compara só as categorias que têm valor real (a referência pode não
+    trazer transporte, por exemplo), somando as mesmas categorias dos dois lados.
+    Com as 5 categorias preenchidas, é o total da viagem.
+    """
     estimado = {gasto["categoria"]: gasto["valor"] for gasto in simulacao["gastos"]}
     erros = {categoria: erro_percentual(estimado.get(categoria), real[categoria]) for categoria in CATEGORIAS}
-    total_real = sum(real.values()) if all(valor is not None for valor in real.values()) else None
-    erros["total"] = erro_percentual(simulacao["total_estimado"], total_real)
-    return erros, total_real
+    comparadas = [categoria for categoria in CATEGORIAS
+                  if real[categoria] is not None and estimado.get(categoria) is not None]
+    if comparadas:
+        total_estimado = sum(estimado[categoria] for categoria in comparadas)
+        total_real = sum(real[categoria] for categoria in comparadas)
+    else:
+        total_estimado = total_real = None
+    erros["total"] = erro_percentual(total_estimado, total_real)
+    return erros, total_estimado, total_real, len(comparadas)
 
 
 def gerar_relatorio(resultados, versao_prompt):
     linhas_viagens = []
     erros_por_categoria = {categoria: [] for categoria in (*CATEGORIAS, "total")}
     deslocadas = 0
+    parciais = 0
     falhas = []
 
     for numero, resultado in enumerate(resultados, start=1):
@@ -119,12 +131,14 @@ def gerar_relatorio(resultados, versao_prompt):
             falhas.append(f"- Viagem {numero} ({rota}, linha {viagem['linha']} do CSV): {resultado['erro']}")
             continue
         simulacao = resultado["simulacao"]
-        erros, total_real = erros_da_simulacao(simulacao, viagem["real"])
+        erros, total_estimado, total_real, comparadas = erros_da_simulacao(simulacao, viagem["real"])
+        if comparadas < len(CATEGORIAS):
+            parciais += 1
         for chave, valor in erros.items():
             erros_por_categoria[chave].append(valor)
         linhas_viagens.append(
             f"| {numero} | {rota} | {resultado['ida']:%d/%m/%Y} a {resultado['volta']:%d/%m/%Y} "
-            f"| {viagem['pessoas']} | {formatar_valor(simulacao['total_estimado'])} "
+            f"| {viagem['pessoas']} | {formatar_valor(total_estimado)} "
             f"| {formatar_valor(total_real)} | "
             + " | ".join(formatar_erro(erros[categoria]) for categoria in CATEGORIAS)
             + f" | {formatar_erro(erros['total'])} | {simulacao['veredito']} |"
@@ -146,6 +160,12 @@ def gerar_relatorio(resultados, versao_prompt):
             "futuro (a SerpApi só busca datas futuras). Preços de outro ano podem explicar parte do erro.",
             "",
         ]
+    if parciais:
+        partes += [
+            f"> {parciais} viagem(ns) não têm valor real em todas as categorias. Nelas, o total "
+            "soma só as categorias com valor real, dos dois lados, para comparar a mesma coisa.",
+            "",
+        ]
     partes += [
         "## Erro médio por categoria",
         "",
@@ -159,7 +179,7 @@ def gerar_relatorio(resultados, versao_prompt):
     medias_categorias = [media(erros_por_categoria[categoria]) for categoria in CATEGORIAS]
     partes += [
         "",
-        f"**Erro médio geral (média das 5 categorias): {formatar_erro(media(medias_categorias))}**",
+        f"**Erro médio geral (média das categorias com valor real): {formatar_erro(media(medias_categorias))}**",
         "",
         "## Viagem a viagem",
         "",
