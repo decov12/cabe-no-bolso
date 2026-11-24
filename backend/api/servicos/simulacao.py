@@ -7,9 +7,11 @@ Veja docs/servicos-ia.md.
 import calendar
 import math
 import re
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta
 from decimal import Decimal, InvalidOperation
 
+from django.db import connections
 from django.utils import timezone
 
 from . import gemini, serpapi
@@ -138,13 +140,33 @@ def escolher_hotel(hoteis):
 # simular()
 # ---------------------------------------------------------------------------
 
+def _em_paralelo(tarefas):
+    """Roda as funções (sem argumentos) ao mesmo tempo e devolve os resultados na ordem.
+
+    Se alguma falhar, a exceção da primeira da lista que falhou é levantada
+    (ErroEntrada / ErroServicoExterno chegam intactas à view).
+    """
+
+    def executar(tarefa):
+        try:
+            return tarefa()
+        finally:
+            # Cada thread abre a própria conexão com o banco (o cache de 24 h usa
+            # o banco); fecha aqui para não deixar conexões abertas para trás.
+            connections.close_all()
+
+    with ThreadPoolExecutor(max_workers=len(tarefas)) as executor:
+        futuros = [executor.submit(executar, tarefa) for tarefa in tarefas]
+        return [futuro.result() for futuro in futuros]
+
+
 def simular(origem, destino, data_ida, data_volta, orcamento, pessoas, interesses,
             versao_prompt=gemini.VERSAO_PADRAO):
     """Simula a viagem e diz se cabe no orçamento.
 
     Gasta 3 buscas da SerpApi (voos, hotéis, calendário), mais 1 se o código do
     destino não estiver em serpapi.CIDADES_POR_AEROPORTO, e 1 chamada ao Gemini.
-    O Gemini é chamado primeiro: se ele falhar, nenhuma busca da SerpApi é gasta.
+    As quatro chamadas rodam em paralelo (veja _em_paralelo).
 
     Levanta ErroEntrada ou ErroServicoExterno (api.servicos.erros).
     """
@@ -156,21 +178,23 @@ def simular(origem, destino, data_ida, data_volta, orcamento, pessoas, interesse
 
     cidade, buscas = serpapi.cidade_do_aeroporto(destino)
 
-    estimativa = gemini.estimar_gastos_locais(
-        f"{cidade} ({destino})", data_ida, data_volta, pessoas, interesses, versao_prompt
-    )
+    inicio, fim = janela_calendario(data_ida)
 
-    voo = serpapi.buscar_voos(origem, destino, data_ida, data_volta)
-    buscas += 1
+    # Gemini, voos, hotéis e calendário não dependem uns dos outros: rodam ao mesmo
+    # tempo. No pior caso a simulação leva o tempo da chamada mais lenta (e não a
+    # soma das quatro), o que evita estourar o limite de tempo da hospedagem.
+    estimativa, voo, hoteis, precos_por_mes = _em_paralelo([
+        lambda: gemini.estimar_gastos_locais(
+            f"{cidade} ({destino})", data_ida, data_volta, pessoas, interesses, versao_prompt
+        ),
+        lambda: serpapi.buscar_voos(origem, destino, data_ida, data_volta),
+        lambda: serpapi.buscar_hoteis(cidade, data_ida, data_volta),
+        lambda: serpapi.buscar_calendario(origem, destino, inicio, fim),
+    ])
+    buscas += 3
 
-    hoteis = serpapi.buscar_hoteis(cidade, data_ida, data_volta)
-    buscas += 1
     if not hoteis:
         raise ErroEntrada(f"Não encontramos hotéis em {cidade} nessas datas.")
-
-    inicio, fim = janela_calendario(data_ida)
-    precos_por_mes = serpapi.buscar_calendario(origem, destino, inicio, fim)
-    buscas += 1
 
     hotel = escolher_hotel(hoteis)
     passagem_total = arredondar(voo["preco_por_pessoa"] * pessoas)

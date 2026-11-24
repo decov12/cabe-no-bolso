@@ -681,13 +681,15 @@ class SimularTests(SimpleTestCase):
     def test_destino_fora_do_mapeamento_gasta_uma_busca_a_mais(self, buscar, chamar, _hoje):
         resultado = self.simular(destino="IMP")
         self.assertEqual(resultado["buscas_serpapi"], 4)
-        self.assertEqual(buscar.call_args_list[2].args[1]["q"], "Imperatriz")
+        # As buscas rodam em paralelo, então a ordem das chamadas não é fixa.
+        hoteis = [c for c in buscar.call_args_list if c.args[0] == "google_hotels"]
+        self.assertEqual(hoteis[0].args[1]["q"], "Imperatriz")
 
-    def test_gemini_falha_antes_de_gastar_busca(self, buscar, chamar, _hoje):
+    def test_gemini_falha_levanta_erro_do_servico(self, buscar, chamar, _hoje):
+        # Gemini e SerpApi rodam em paralelo; a falha do Gemini chega à view como ErroServicoExterno.
         chamar.side_effect = ["{quebrado", "{quebrado"]
         with mock.patch("api.servicos.gemini.time.sleep"), self.assertRaises(ErroServicoExterno):
             self.simular()
-        buscar.assert_not_called()
 
     def test_sem_hoteis(self, buscar, chamar, _hoje):
         buscar.side_effect = lambda engine, params: {"properties": []} if engine == "google_hotels" else buscar_falso(engine, params)

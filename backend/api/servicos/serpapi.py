@@ -33,6 +33,8 @@ TEXTO_SEM_RESULTADOS = "hasn't returned any results"
 # de código). Escolha: um mapeamento simples código -> cidade para os aeroportos
 # mais comuns, que não gasta busca. Se o código não estiver aqui, usamos o
 # autocomplete (1 busca a mais) e pegamos a cidade que tem aquele aeroporto.
+# Nomes que existem em mais de um lugar levam o país ou o estado (ex.: "São Francisco" casava com
+# uma cidade do Brasil na busca de hotel, com gl=br). Sem isso o hotel vem do lugar errado.
 CIDADES_POR_AEROPORTO = {
     # Brasil
     "GRU": "São Paulo", "CGH": "São Paulo", "VCP": "Campinas",
@@ -47,28 +49,28 @@ CIDADES_POR_AEROPORTO = {
     # América do Sul
     "EZE": "Buenos Aires", "AEP": "Buenos Aires", "BRC": "Bariloche",
     "MDZ": "Mendoza", "SCL": "Santiago", "MVD": "Montevidéu",
-    "PDP": "Punta del Este", "LIM": "Lima", "CUZ": "Cusco", "BOG": "Bogotá",
+    "PDP": "Punta del Este", "LIM": "Lima, Peru", "CUZ": "Cusco", "BOG": "Bogotá",
     "CTG": "Cartagena", "MDE": "Medellín", "ASU": "Assunção", "UIO": "Quito",
     # América do Norte e Caribe
     "MIA": "Miami", "MCO": "Orlando", "FLL": "Fort Lauderdale",
     "JFK": "Nova York", "EWR": "Nova York", "LGA": "Nova York",
-    "LAX": "Los Angeles", "SFO": "São Francisco", "LAS": "Las Vegas",
-    "ORD": "Chicago", "BOS": "Boston", "IAD": "Washington", "YYZ": "Toronto",
+    "LAX": "Los Angeles", "SFO": "San Francisco, Califórnia", "LAS": "Las Vegas",
+    "ORD": "Chicago", "BOS": "Boston", "IAD": "Washington, D.C.", "YYZ": "Toronto",
     "YUL": "Montreal", "MEX": "Cidade do México", "CUN": "Cancún",
     "PUJ": "Punta Cana", "HAV": "Havana", "PTY": "Cidade do Panamá",
     # Europa
-    "LIS": "Lisboa", "OPO": "Porto", "FAO": "Faro", "MAD": "Madri",
+    "LIS": "Lisboa", "OPO": "Porto, Portugal", "FAO": "Faro, Portugal", "MAD": "Madri",
     "BCN": "Barcelona", "CDG": "Paris", "ORY": "Paris", "LHR": "Londres",
     "LGW": "Londres", "STN": "Londres", "FCO": "Roma", "CIA": "Roma",
     "MXP": "Milão", "LIN": "Milão", "VCE": "Veneza", "FLR": "Florença",
     "NAP": "Nápoles", "AMS": "Amsterdã", "BRU": "Bruxelas", "FRA": "Frankfurt",
     "MUC": "Munique", "BER": "Berlim", "ZRH": "Zurique", "GVA": "Genebra",
-    "VIE": "Viena", "PRG": "Praga", "BUD": "Budapeste", "DUB": "Dublin",
+    "VIE": "Viena", "PRG": "Praga", "BUD": "Budapeste", "DUB": "Dublin, Irlanda",
     "EDI": "Edimburgo", "CPH": "Copenhague", "ARN": "Estocolmo", "OSL": "Oslo",
     "ATH": "Atenas", "IST": "Istambul",
     # África, Ásia e Oceania
     "CPT": "Cidade do Cabo", "JNB": "Joanesburgo", "CMN": "Casablanca",
-    "CAI": "Cairo", "DXB": "Dubai", "DOH": "Doha", "TLV": "Tel Aviv",
+    "CAI": "Cairo, Egito", "DXB": "Dubai", "DOH": "Doha", "TLV": "Tel Aviv",
     "NRT": "Tóquio", "HND": "Tóquio", "KIX": "Osaka", "ICN": "Seul",
     "PEK": "Pequim", "PVG": "Xangai", "HKG": "Hong Kong", "SIN": "Singapura",
     "BKK": "Bangcoc", "DPS": "Bali", "SYD": "Sydney", "MEL": "Melbourne",
